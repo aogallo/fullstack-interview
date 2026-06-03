@@ -9,13 +9,7 @@ export default function App() {
   return (
     <ErrorBoundary>
       <BrowserRouter>
-        <main
-          style={{
-            maxWidth: '800px',
-            margin: '0 auto',
-            padding: '20px',
-          }}
-        >
+        <main>
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/quiz/:id" element={<QuizPage />} />

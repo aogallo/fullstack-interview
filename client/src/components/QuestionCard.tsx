@@ -1,5 +1,5 @@
-import type { CSSProperties } from 'react';
 import type { Question } from '../types';
+import './QuestionCard.css';
 
 interface QuestionCardProps {
   question: Question;
@@ -8,65 +8,28 @@ interface QuestionCardProps {
   onAnswer: (optionIndex: number) => void;
 }
 
-const cardStyle: CSSProperties = {
-  backgroundColor: '#fff',
-  borderRadius: '8px',
-  padding: '24px',
-  boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-};
-
-const questionStyle: CSSProperties = {
-  marginTop: 0,
-  marginBottom: '20px',
-  fontSize: '1.2rem',
-};
-
-const optionsStyle: CSSProperties = {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '8px',
-};
-
-const feedbackStyle: CSSProperties = {
-  marginTop: '16px',
-  padding: '12px',
-  borderRadius: '4px',
-  backgroundColor: '#fff3cd',
-  border: '1px solid #ffeeba',
-};
-
-function getButtonStyle(
+function getOptionClass(
   index: number,
   selectedAnswer: number | null,
   showFeedback: boolean,
   correctAnswer: number,
-): CSSProperties {
-  const base: CSSProperties = {
-    padding: '12px 16px',
-    border: '1px solid #ddd',
-    borderRadius: '4px',
-    cursor: selectedAnswer !== null ? 'default' : 'pointer',
-    fontSize: '1rem',
-    textAlign: 'left',
-    backgroundColor: '#fff',
-  };
+): string {
+  const classes = ['question-card__option'];
 
   if (!showFeedback) {
     if (index === selectedAnswer) {
-      base.backgroundColor = '#e2e6ea';
+      classes.push('question-card__option--selected');
     }
-    return base;
+    return classes.join(' ');
   }
 
   if (index === correctAnswer) {
-    base.backgroundColor = '#d4edda';
-    base.borderColor = '#c3e6cb';
+    classes.push('question-card__option--correct');
   } else if (index === selectedAnswer && selectedAnswer !== correctAnswer) {
-    base.backgroundColor = '#f8d7da';
-    base.borderColor = '#f5c6cb';
+    classes.push('question-card__option--incorrect');
   }
 
-  return base;
+  return classes.join(' ');
 }
 
 export function QuestionCard({
@@ -76,13 +39,13 @@ export function QuestionCard({
   onAnswer,
 }: QuestionCardProps) {
   return (
-    <div style={cardStyle}>
-      <h2 style={questionStyle}>{question.question}</h2>
-      <div style={optionsStyle}>
+    <div className="question-card">
+      <h2 className="question-card__text">{question.question}</h2>
+      <div className="question-card__options">
         {question.options.map((option, index) => (
           <button
             key={index}
-            style={getButtonStyle(
+            className={getOptionClass(
               index,
               selectedAnswer,
               showFeedback,
@@ -96,8 +59,8 @@ export function QuestionCard({
         ))}
       </div>
       {showFeedback && (
-        <div style={feedbackStyle}>
-          <p style={{ margin: 0 }}>{question.explanation}</p>
+        <div className="question-card__feedback">
+          <p>{question.explanation}</p>
         </div>
       )}
     </div>

@@ -15,42 +15,29 @@ describe('ProgressBar', () => {
 
   it('shows 0% width when current is 0', () => {
     const { container } = render(<ProgressBar current={0} total={5} />);
-    // Find the inner fill div by its background color style
-    const allDivs = container.querySelectorAll('div');
-    const fillDiv = Array.from(allDivs).find(
-      (d) => d.style.backgroundColor === 'rgb(0, 123, 255)',
-    );
-    expect(fillDiv).toBeDefined();
+    const fillDiv = container.querySelector('.progress-bar__fill');
+    expect(fillDiv).toBeInTheDocument();
     expect(fillDiv).toHaveStyle('width: 0%');
   });
 
   it('calculates correct fill width percentage', () => {
     const { container } = render(<ProgressBar current={5} total={10} />);
-    const allDivs = container.querySelectorAll('div');
-    const fillDiv = Array.from(allDivs).find(
-      (d) => d.style.backgroundColor === 'rgb(0, 123, 255)',
-    );
-    expect(fillDiv).toBeDefined();
+    const fillDiv = container.querySelector('.progress-bar__fill');
+    expect(fillDiv).toBeInTheDocument();
     expect(fillDiv).toHaveStyle('width: 50%');
   });
 
   it('shows 100% when current equals total', () => {
     const { container } = render(<ProgressBar current={10} total={10} />);
-    const allDivs = container.querySelectorAll('div');
-    const fillDiv = Array.from(allDivs).find(
-      (d) => d.style.backgroundColor === 'rgb(0, 123, 255)',
-    );
-    expect(fillDiv).toBeDefined();
+    const fillDiv = container.querySelector('.progress-bar__fill');
+    expect(fillDiv).toBeInTheDocument();
     expect(fillDiv).toHaveStyle('width: 100%');
   });
 
   it('shows 0% when total is 0', () => {
     const { container } = render(<ProgressBar current={0} total={0} />);
-    const allDivs = container.querySelectorAll('div');
-    const fillDiv = Array.from(allDivs).find(
-      (d) => d.style.backgroundColor === 'rgb(0, 123, 255)',
-    );
-    expect(fillDiv).toBeDefined();
+    const fillDiv = container.querySelector('.progress-bar__fill');
+    expect(fillDiv).toBeInTheDocument();
     expect(fillDiv).toHaveStyle('width: 0%');
   });
 });

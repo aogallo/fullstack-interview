@@ -1,3 +1,5 @@
+import './LoadingSpinner.css';
+
 interface LoadingSpinnerProps {
   message?: string;
 }

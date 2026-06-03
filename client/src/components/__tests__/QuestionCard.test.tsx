@@ -77,9 +77,8 @@ describe('QuestionCard', () => {
         onAnswer={() => {}}
       />,
     );
-    // Paris (correct answer) button should have green background
     const correctButton = screen.getByText('Paris');
-    expect(correctButton).toHaveStyle('background-color: #d4edda');
+    expect(correctButton).toHaveClass('question-card__option--correct');
   });
 
   it('highlights incorrect answer in red when showing feedback', () => {
@@ -91,9 +90,8 @@ describe('QuestionCard', () => {
         onAnswer={() => {}}
       />,
     );
-    // London (incorrect answer) button should have red background
     const wrongButton = screen.getByText('London');
-    expect(wrongButton).toHaveStyle('background-color: #f8d7da');
+    expect(wrongButton).toHaveClass('question-card__option--incorrect');
   });
 
   it('shows explanation when feedback is displayed', () => {

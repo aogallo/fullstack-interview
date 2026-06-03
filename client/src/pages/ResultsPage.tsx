@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../store';
 import { resetQuiz } from '../store/quizSlice';
 import { setView } from '../store/uiSlice';
 import { ResultSummary } from '../components/ResultSummary';
+import './ResultsPage.css';
 
 export default function ResultsPage() {
   const navigate = useNavigate();
@@ -16,16 +17,9 @@ export default function ResultsPage() {
 
   if (!lastResult) {
     return (
-      <div style={{ textAlign: 'center', padding: '40px' }}>
+      <div className="results-page__empty">
         <p>No results available. Please complete a quiz first.</p>
-        <button
-          onClick={() => navigate('/')}
-          style={{
-            padding: '10px 24px',
-            fontSize: '1rem',
-            cursor: 'pointer',
-          }}
-        >
+        <button className="results-page__back-btn" onClick={() => navigate('/')}>
           Back to Quizzes
         </button>
       </div>
@@ -43,22 +37,6 @@ export default function ResultsPage() {
     navigate('/');
   };
 
-  const btnStyle = {
-    padding: '10px 24px',
-    fontSize: '1rem',
-    cursor: 'pointer' as const,
-    border: '1px solid #007bff',
-    borderRadius: '4px',
-    backgroundColor: '#fff',
-    color: '#007bff',
-  };
-
-  const primaryBtnStyle = {
-    ...btnStyle,
-    backgroundColor: '#007bff',
-    color: '#fff',
-  };
-
   return (
     <div>
       <ResultSummary
@@ -68,23 +46,18 @@ export default function ResultsPage() {
         feedback={`You answered ${lastResult.score} out of ${lastResult.total} questions correctly.`}
       />
 
-      <div
-        style={{
-          marginTop: '24px',
-          display: 'flex',
-          gap: '12px',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-        }}
-      >
-        <button style={primaryBtnStyle} onClick={handleRetake}>
+      <div className="results-page__actions">
+        <button
+          className="results-page__action-btn results-page__action-btn--primary"
+          onClick={handleRetake}
+        >
           Retake Quiz
         </button>
-        <button style={btnStyle} onClick={handleBackToQuizzes}>
+        <button className="results-page__action-btn" onClick={handleBackToQuizzes}>
           Back to Quizzes
         </button>
         <button
-          style={btnStyle}
+          className="results-page__action-btn"
           onClick={() => setShowReview(!showReview)}
         >
           {showReview ? 'Hide Review' : 'Review Answers'}
@@ -92,21 +65,19 @@ export default function ResultsPage() {
       </div>
 
       {showReview && currentQuiz && (
-        <div style={{ marginTop: '24px' }}>
-          <h3>Answer Review</h3>
+        <div className="results-page__review">
+          <h3 className="results-page__review-title">Answer Review</h3>
           {currentQuiz.questions.map((q, index) => {
             const userAnswer = answers[q.id];
             const isCorrect = userAnswer === q.correctAnswer;
             return (
               <div
                 key={q.id}
-                style={{
-                  padding: '16px',
-                  marginBottom: '12px',
-                  borderRadius: '4px',
-                  border: `1px solid ${isCorrect ? '#c3e6cb' : '#f5c6cb'}`,
-                  backgroundColor: isCorrect ? '#d4edda' : '#f8d7da',
-                }}
+                className={
+                  isCorrect
+                    ? 'results-page__review-item results-page__review-item--correct'
+                    : 'results-page__review-item results-page__review-item--incorrect'
+                }
               >
                 <p>
                   <strong>Q{index + 1}:</strong> {q.question}
@@ -119,7 +90,9 @@ export default function ResultsPage() {
                 </p>
                 <p>Correct answer: {q.options[q.correctAnswer]}</p>
                 {!isCorrect && (
-                  <p style={{ marginTop: '8px' }}>{q.explanation}</p>
+                  <p className="results-page__review-explanation">
+                    {q.explanation}
+                  </p>
                 )}
               </div>
             );

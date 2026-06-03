@@ -1,0 +1,125 @@
+.dashboard-page__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.dashboard-page__back-btn {
+  padding: 8px 16px;
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.dashboard-page__title {
+  margin: 0;
+}
+
+.dashboard-page__profile-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.dashboard-page__label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.dashboard-page__input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+.dashboard-page__empty {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.dashboard-page__loading {
+  text-align: center;
+  padding: 40px;
+}
+
+.dashboard-page__error {
+  text-align: center;
+  padding: 20px;
+  color: #dc3545;
+  background-color: #f8d7da;
+  border-radius: 4px;
+  border: 1px solid #f5c6cb;
+}
+
+.dashboard-page__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.dashboard-page__stat-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-page__stat-value {
+  font-size: 2rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+.dashboard-page__stat-label {
+  margin: 4px 0 0;
+  color: #666;
+}
+
+.dashboard-page__history-title {
+  margin: 0 0 16px;
+}
+
+.dashboard-page__table-wrapper {
+  overflow-x: auto;
+}
+
+.dashboard-page__table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-page__table th {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 2px solid #dee2e6;
+  background-color: #f8f9fa;
+}
+
+.dashboard-page__table td {
+  padding: 12px;
+}
+
+.dashboard-page__table tr {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.dashboard-page__table tr:last-child {
+  border-bottom: none;
+}
