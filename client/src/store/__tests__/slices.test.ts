@@ -17,7 +17,7 @@ function createTestStore() {
   return configureStore({
     reducer: {
       quiz: quizReducer,
-      score: (state = { lastResult: null, history: [], loading: false, error: null }, _action: any) => state,
+      score: (state = { lastResult: null, history: [], loading: false, error: null }) => state,
       ui: uiReducer,
     },
   });

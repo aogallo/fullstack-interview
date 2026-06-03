@@ -47,10 +47,6 @@ function seedQuestion(
   );
 }
 
-function seedUser(db: Database, username: string): void {
-  db.run('INSERT INTO users (username) VALUES (?)', [username]);
-}
-
 function seedAttempt(
   db: Database,
   quizId: string,
