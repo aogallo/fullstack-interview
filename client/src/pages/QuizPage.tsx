@@ -6,6 +6,7 @@ import { submitAnswers } from '../store/scoreSlice';
 import { setView } from '../store/uiSlice';
 import { QuestionCard } from '../components/QuestionCard';
 import { ProgressBar } from '../components/ProgressBar';
+import './QuizPage.css';
 
 export default function QuizPage() {
   const { id } = useParams<{ id: string }>();
@@ -29,23 +30,15 @@ export default function QuizPage() {
   }, [dispatch]);
 
   if (loading) {
-    return <div style={{ textAlign: 'center', padding: '40px' }}>Loading quiz...</div>;
+    return <div className="quiz-page__loading">Loading quiz...</div>;
   }
 
   if (error) {
-    return (
-      <div style={{ textAlign: 'center', padding: '40px', color: '#dc3545' }}>
-        {error}
-      </div>
-    );
+    return <div className="quiz-page__error">{error}</div>;
   }
 
   if (!currentQuiz || currentQuiz.questions.length === 0) {
-    return (
-      <div style={{ textAlign: 'center', padding: '40px' }}>
-        No questions available.
-      </div>
-    );
+    return <div className="quiz-page__empty">No questions available.</div>;
   }
 
   const totalQuestions = currentQuiz.questions.length;
@@ -95,19 +88,11 @@ export default function QuizPage() {
       />
 
       {showFeedback && (
-        <div style={{ marginTop: '16px', textAlign: 'right' }}>
+        <div className="quiz-page__actions">
           <button
+            className="quiz-page__next-btn"
             onClick={handleNext}
             disabled={submitting}
-            style={{
-              padding: '12px 32px',
-              backgroundColor: '#007bff',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontSize: '1rem',
-            }}
           >
             {submitting
               ? 'Submitting...'

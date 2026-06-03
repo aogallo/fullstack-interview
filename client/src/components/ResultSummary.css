@@ -1,0 +1,29 @@
+.result-summary {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.result-summary__title {
+  margin: 0 0 16px;
+}
+
+.result-summary__badge {
+  display: inline-block;
+  padding: 8px 24px;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.result-summary__score {
+  font-size: 1.5rem;
+  margin: 16px 0;
+}
+
+.result-summary__feedback {
+  color: #666;
+}
